@@ -139,7 +139,7 @@
 </pre>
 
 <p>Here satishtalim.com indicates that the request was successful by returning the status 200 OK. In contrast, google.com is permanently redirected (to www.google.com, naturally), indicated by status code 301 (a "301 redirect"):</p>
-<pre>$ curl --head rubylearning.org
+<pre>$ curl --head google.com
   HTTP/1.1 301 Moved Permanently
   Location: http://www.google.com/
   .
@@ -241,11 +241,11 @@ require 'open-uri'
 doc = Nokogiri::HTML(open("http://rubylearning.com/"))
 
 # Search with XPath
-doc.xpath("//h2[@id='slogan']").first.content
+puts doc.xpath("//h2[@id='slogan']").first.content
 # output: "Helping Ruby Programmers become Awesome!"
 
 # Search with CSS3
-doc.css("#footer p strong:first-child")[0].content
+puts doc.css("#footer p strong:first-child")[0].content
 # output: "RubyLearning.com - A Ruby Tutorial"
 </pre>
 
