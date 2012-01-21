@@ -1,0 +1,8 @@
+# Editor temp files
+*.*~
+*.swp
+*.sw0
+.redcar
+
+# rvm settings file
+.rvmrc
