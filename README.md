@@ -1,11 +1,11 @@
 Preparing the Core Ruby course participants for the web
 =======================================================
 
-RubyLearning.org is planning a *free, online course* on topics that hopefully will help those that have some knowledge of Ruby programming to get started with web programming - call it "*Intermediate Ruby Programming*". This does not cover Ruby on Rails. 
+RubyLearning.org has announced a *free, online course* on topics that hopefully will help those that have some knowledge of Ruby programming to get started with web programming - call it "*Programming for the Web with Ruby*". This does not cover Ruby on Rails. 
 
-The course material is under preparation and I am looking for help from you to add / subtract / modify the topics and material for this course. We also require many problems/solutions for the course participants.
+The course material is almost ready and I am looking for help from you to add / subtract / modify the topics and material for this course. We also require many problems/solutions for the course participants.
 
-The course is scheduled to be held in Jan. 2012 and we would have 3-4 mentors helping out the participants during the course. 
+The course is scheduled for 20th Feb. 2012 and we would have 3-4 mentors helping out the participants during the course. 
 
 Can you help?
 
