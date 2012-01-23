@@ -494,6 +494,48 @@ jruby 1.6.5 (ruby-1.8.7-p330) (2011-10-25 9dcd388) (Java HotSpot(TM) Client VM 1
 
 <p>A gem is a packaged Ruby application or library. RubyGems is the standard way to distribute Ruby applications and libraries and is available to you after you have downloaded and installed Ruby 1.9+.</p>
 
+<h3>What's Heroku?</h3>
+<p>Heroku (pronounced her-OH-koo) is a cloud application platform - a new way of building and deploying web apps.</p>
+
+<h4>Create an account on Heroku</h4>
+
+<p>Please ensure that you are connected to the internet and then create an account on Heroku (obviously do this only once) if you don't have one - <a href="http://heroku.com/signup">http://heroku.com/signup</a>.</p>
+
+<p>On your local machine, open a new command window to install the Heroku gem file. Type:</p>
+<pre>gem install heroku
+</pre>
+
+<p>Next, create a new folder, say <code>rackheroku</code>. Assuming that you have Git installed, open a Bash shell in that folder. You now need to identify yourself to Git (you need to do this only once). With the bash shell still open type in the following:</p>
+<pre>git config --global user.name "Your name here"
+git config --global user.email "Your email id"
+</pre>
+
+<p>Git does not allow accented characters in user name. This will set the info stored when you commit to a Git repository. Git has now been set up.</p>
+
+<p>The first step in using Git is to create your SSH Key. This will be used to secure communications between your machine and other machines, and to identify your source code changes. (If you already have an SSH key for other reasons, you can use it here, there is nothing Git-specific about this.)</p>
+
+<p>To create our ssh key, open a new command window and type:</p>
+<pre>$ ssh-keygen -C "username@email.com" -t rsa
+</pre>
+<p>(with your own email address, of course).</p>
+
+<p>Accept the default key file location. When prompted for a passphrase, make one up and enter it. If you feel confident that your own machine is secure, you can use a blank passphrase, for more convenience and less security. Note where it told you it stored the file. On my Windows box, it was stored in "C:\Documents and Settings\A\.ssh\". Memorize your passphrase carefully. If you forget it, you will NOT be able to recover it.</p>
+<p>Open the public file id_rsa.pub with a text editor. The text in there is your "public SSH key".</p>
+
+<p>Upload your public key (do it only once):</p>
+<pre>$ heroku keys:add
+</pre>
+<p>You'll be prompted for your username and password the first time you run a heroku command; they'll be saved on ~/.heroku/credentials so you won't be prompted on future runs. It will also upload your public key to allow you to push and pull code.</p>
+
+<h4>Install Bundle</h4>
+<p>In the already open command window, we will install bundler. Type:</p>
+<pre>gem install bundler
+</pre>
+
+<p>Close the command window.</p>
+<p>Bundle allows you to bundle your gems (both pure-ruby and native) with your application.</p>
+
+
     <h2>Exercise 1</h2>
 
     <p>Please create and post the URL of your GitHub repo in the relevant
