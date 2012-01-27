@@ -267,6 +267,15 @@ Rack::Handler::WEBrick.run method(:my_method)
 </pre>
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
+<h3>A Simple Rack Exercise with rack gem</h3>
+<p>Previously you have written a simple Rack application which when run, accepts a command-line argument. Display this command-line argument. An example:</p>
+<pre>$ ruby simple_rack.rb "Hello World"
+200
+{"Content-Type"=>"text/plain"}
+Command line argument you typed was: Hello World
+$
+</pre>
+<p>Re-write this app using the rack gem.</p>
 
 <h2>Using rackup</h2>
 <p>The rack gem comes with a bunch of useful stuff to make life easier for a rack application developer. <code>rackup</code> is one of them.</p>
@@ -328,6 +337,16 @@ run MyApp.new
 <pre>Hello Rack Participants
 </pre>
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
+
+<h3>A Simple Rack Exercise with rackup</h3>
+<p>Previously you have written a simple Rack application which when run, accepts a command-line argument. Display this command-line argument. An example:</p>
+<pre>$ ruby simple_rack.rb "Hello World"
+200
+{"Content-Type"=>"text/plain"}
+Command line argument you typed was: Hello World
+$
+</pre>
+<p>Re-write this app using rackup and config.ru.</p>
 
 <h3>Using Rack::Request and Rack::Response</h3>
 <p>We will use <code>cURL</code>, <code>Rack::Request</code> and <code>Rack::Response</code> in the code examples that follow.</p>
