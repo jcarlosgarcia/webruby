@@ -408,6 +408,9 @@ end
 <p><b>Credit:</b> <a href="https://github.com/rkh">Konstantin Haase</a></p>
 <p>Konstantin has provided us with <a href="https://gist.github.com/57c8449e305a55a80e21">another practical Rack app</a>, where we use <code>cURL</code> to upload a text file and which then gets sorted.</p>
 
+<h3>An Exercise using Rack::Request and Rack::Response</h3>
+<p>Write a rack app that uses <code>Rack::Request</code> and <code>Rack::Response</code> to reverse a string passed to the app by a client. Post your code in the technical forum.</p>
+
 <h4>Rack middleware</h4>
 <p><b>Credit:</b> <a href="https://github.com/mattetti">Matt Aimonetti</a></p>
 <p><b>Remember</b>: <span style="background-color: #FFFFCC;">The fundamental idea behind Rack middleware is - come between the calling client and the server, process the HTTP request before sending it to the server, and processing the HTTP response before returning it to the client</span>.</p>
@@ -463,6 +466,9 @@ run Proc.new{|env|  [200, {"Content-Type" => "text/plain"}, ['Try accessing visi
 <p>That's your middleware talking!</p>
 
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
+
+<h3>An Exercise on Rack middleware</h3>
+<p>Write a Rack middleware that throws a 404 page displaying "Not OK!" whenever the client tries to access the app using the wrong path. For example, if the client types the URL <a href="http://localhost:9292">http://localhost:9292</a> then the app throws a page displaying "OK!" whereas for any other URL like <a href="http://localhost:9292/newroute">http://localhost:9292/newroute</a> the app throws a 404 page displaying "Not OK!"</p>
 
 <h3>Using Lobster</h3>
 <p>Rack comes with little funny web application called "Lobster", that can be used as a demo.</p>
@@ -622,6 +628,8 @@ Rack::Handler::WEBrick.run rack_app, :Port => 9292
 </pre>
 <p>Do run all the examples in this Rack tutorial, to get a solid understanding of Rack.</p>
 
+<h2>More on Rack</h2>
+<p>Pick some projects from <a href="http://coderack.org/">http://coderack.org/</a> and examine the source. You will learn a lot.</p>
       <p>
 	    <strong>
 	    <a href="chapter4.html">&lt;Chapter 4 | </a>
@@ -630,7 +638,7 @@ Rack::Handler::WEBrick.run rack_app, :Port => 9292
 	    </strong>
       </p>
 <div id="footer">
-  <p>&copy; 2006-2012&nbsp;<strong>RubyLearning.org - Programming for the Web with Ruby</strong>&nbsp;&nbsp;Page Updated: 21st Jan. 2012</p>
+  <p>&copy; 2006-2012&nbsp;<strong>RubyLearning.org - Programming for the Web with Ruby</strong>&nbsp;&nbsp;Page Updated: 27th Jan. 2012</p>
 </div>
 
 </div>
