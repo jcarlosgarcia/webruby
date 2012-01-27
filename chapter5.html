@@ -19,8 +19,8 @@
       </p>
 
 <h1 class="title">Day 5 and 6 - Spend more time here!</h1>
-<h2>Learning Rack</h2>
-<h3>Revisiting Ruby's proc object</h3>
+<h1>Learning Rack</h1>
+<h2>Revisiting Ruby's proc object</h2>
 <p>Note that I have Ruby 1.9.3 installed on a Windows box and all the programs in this article have been tested using that.</p>
 <p>Remember the <a href="http://rubylearning.com/satishtalim/ruby_procs.html">proc object from Ruby</a>? <em>Blocks are not objects</em>, but they can be converted into objects of class <code>Proc</code>. This can be done by calling the <code>lambda</code> method of the class <code>Object</code>. A block created with <code>lambda</code> acts like a Ruby method. The class <code>Proc</code> has a method <code>call</code> that invokes the block.</p>
 
@@ -37,7 +37,7 @@ $
 </pre>
 <p>Close the command window.</p>
 
-<h4>my_proc1.rb</h4>
+<h3>my_proc1.rb</h3>
 <p>The above can be written in a Ruby program <b><code>my_proc1.rb</code></b>:</p>
 <pre># my_proc1.rb
 my_proc = lambda {puts 'Proc Called'}
@@ -49,8 +49,15 @@ my_proc.call
 </pre>
 <p>Close the command window.</p>
 
-<h3>Rack Specification</h3>
-<p>In the words of the author of Rack - <b>Christian Neukirchen</b>: Rack aims to provide a minimal API for connecting web servers supporting Ruby (like WEBrick, Mongrel etc.) and Ruby web frameworks (like Rails, Sinatra etc.).</p>
+<h2>Rack Documentation</h2>
+<p><a href="http://rack.rubyforge.org/doc/">http://rack.rubyforge.org/doc/</a></p>
+
+<h2>Rack Source Code</h2>
+<p><a href="https://github.com/rack/rack">https://github.com/rack/rack</a></p>
+
+
+<h2>Rack Specification</h2>
+<p>In the words of the author of Rack - <b>Christian Neukirchen</b>: <span style="background-color: #FFFFCC;">Rack aims to provide a minimal API for connecting web servers supporting Ruby (like WEBrick, Mongrel etc.) and Ruby web frameworks (like Rails, Sinatra etc.)</span>.</p>
 
 <p>Web frameworks such as Sinatra are built on top of Rack or have a Rack interface for allowing web application servers to connect to them.</p>
 
@@ -58,12 +65,12 @@ my_proc.call
 
 <p>HTTP is a simple protocol: it basically describes the activity of a client sending a HTTP request to a server and the server returning a HTTP response. Both HTTP request and HTTP response in turn have very similar structures. A HTTP request is a triplet consisting of a method and resource pair, a set of headers and an optional body while a HTTP response is in triplet consisting of a response code, a set of headers and an optional body.</p>
 
-<p>Rack maps closely to this. <span style="background-color: #FFFFCC;">A Rack application is a Ruby object that has a <code>call</code> method, which has a single argument, the <em>environment</em>, (corresponding to a HTTP request) and returns an array of 3 elements, <em>status</em>, <em>headers</em> and <em>body</em> (corresponding to a HTTP response)</span>.</p>
+<p>Rack maps closely to this. <span style="background-color: #FFFFCC;">A Rack application is a Ruby object (not a class) that responds to <code>call</code> and takes exactly one argument, the <em>environment</em>. The <em>environment</em> must be a true instance of <code>Hash</code>. This hash contains all the relevant information about the request: this includes the HTTP verb used by the request, the path that is requested, the headers that have been sent by the client, and so on. The app should return an <code>Array</code> of exactly three values: the <em>status</em> code (it must be greater than or equal to 100), the <em>headers</em> (must be a hash), and the <em>body</em> (the body commonly is an Array of Strings, the application instance itself, or a File-like object. The <em>body</em> (corresponding to a HTTP response) must respond to method <code>each</code> and must only yield <code>String</code> values.)</span></p>
+
 <p>That's the Rack specification in a nutshell. You can check out the full details <a href="http://rack.rubyforge.org/doc/files/SPEC.html">here</a>. <b>Strictly speaking, you don't need the rack gem in order to write Rack ready applications</b>. Just stick to the specification and that's it.</p>
 
-
-<h3>A simple Rack app - my_rack_proc</h3>
-<p>As mentioned earlier, <span style="background-color: #FFFFCC;">our simple Rack application is a Ruby object (not a class) that responds to <code>call</code> and takes exactly one argument, the <em>environment</em>. The <em>environment</em> must be a true instance of <code>Hash</code>. This hash contains all the relevant information about the request: this includes the HTTP verb used by the request, the path that is requested, the headers that have been sent by the client, and so on. The app should return an <code>Array</code> of exactly three values: the <em>status</em> code (it must be greater than or equal to 100), the <em>headers</em> (must be a hash), and the <em>body</em> (the body commonly is an Array of Strings, the application instance itself, or a File-like object. The <em>body</em> must respond to method <code>each</code> and must only yield <code>String</code> values.)</span></p>
+<h3>A Rack App without using the Rack gem</h3>
+<h4>A simple Rack app - my_rack_proc</h4>
 <p>Let us create our new <code>proc</code> object. Open a command window and type:</p>
 <pre>$ irb --simple-prompt
 &gt;&gt; my_rack_proc = lambda { |env| [200, {}, ["Hello. The time is #{Time.now}"]] }
@@ -106,14 +113,17 @@ Hello. The time is 2011-12-07 09:42:31 +0530
 </pre>
 <p>Close the command window.</p>
 
+<h4>A Simple Rack Exercise</h4>
+<p>Write a simple Rack application which when run, accepts a command-line argument. Display this command-line argument. An example:</p>
+<pre>$ ruby simple_rack.rb "Hello World"
+200
+{"Content-Type"=>"text/plain"}
+Command line argument you typed was: Hello World
+$
+</pre>
 
-<h3>Rack Documentation</h3>
-<p><a href="http://rack.rubyforge.org/doc/">http://rack.rubyforge.org/doc/</a></p>
 
-<h3>Rack Source Code</h3>
-<p><a href="https://github.com/rack/rack">https://github.com/rack/rack</a></p>
-
-<h3>Installing Rack gem</h3>
+<h2>Installing Rack gem</h2>
 <p>Rack gem is a <a href="http://rack.rubyforge.org/doc/classes/Rack.html">collection of utilities and facilitating classes</a>, to make life easier for anyone developing Rack applications. It includes basic implementations of request, response, cookies, sessions and a good number of useful middlewares.</p>
 
 <p>Rack includes <em>handlers</em> that connect Rack to all these web application servers (WEBrick, Mongrel etc.).</p>
@@ -185,7 +195,7 @@ Hello. The time is 2011-12-07 09:42:31 +0530
 <p>In the command window, press <b>Ctrl C</b> to stop the <b>WEBrick</b> server. Close the command window.</p>
 
 
-<h4>my_rack_proc2.rb</h4>
+<h3>my_rack_proc2.rb</h3>
 <p>What we saw above can be written in a Ruby program <b><code>my_rack_proc2.rb</code></b>:</p>
 <pre># my_rack_proc2.rb
 require 'rack'
@@ -258,7 +268,7 @@ Rack::Handler::WEBrick.run method(:my_method)
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
 
-<h3>Using rackup</h3>
+<h2>Using rackup</h2>
 <p>The rack gem comes with a bunch of useful stuff to make life easier for a rack application developer. <code>rackup</code> is one of them.</p>
 
 <p><code>rackup</code> is a useful tool for running Rack applications. <code>rackup</code> automatically figures out the environment it is run in, and runs your application as FastCGI, CGI, or standalone with Mongrel or WEBrick - all from the same configuration.</p>
@@ -319,7 +329,7 @@ run MyApp.new
 </pre>
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
-<h4>Using Rack::Request and Rack::Response</h4>
+<h3>Using Rack::Request and Rack::Response</h3>
 <p>We will use <code>cURL</code>, <code>Rack::Request</code> and <code>Rack::Response</code> in the code examples that follow.</p>
 <p>First, let's look at the following <code>cURL</code> command:</p>
 <pre>curl -X request
@@ -371,11 +381,11 @@ end
 
 <p>Type <code>exit</code> in your Bash shell and press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
-<h4>A very basic practical Rack app</h4>
+<h3>A very basic practical Rack app</h3>
 <p><b>Credit:</b> <a href="https://github.com/mattetti">Matt Aimonetti</a></p>
 <p>Matt has been kind enough to <a href="https://gist.github.com/1447058">write this app</a> for us. It's a very basic rack application showing how to use a router based on the uri and how to process requests based on the HTTP method used. The explanation is <a href="https://github.com/rack/rack/wiki/Rack-app-with-uri-and-HTTP-specific-responses">here</a>.</p>
 
-<h4>Another practical Rack app</h4>
+<h3>Another practical Rack app</h3>
 <p><b>Credit:</b> <a href="https://github.com/rkh">Konstantin Haase</a></p>
 <p>Konstantin has provided us with <a href="https://gist.github.com/57c8449e305a55a80e21">another practical Rack app</a>, where we use <code>cURL</code> to upload a text file and which then gets sorted.</p>
 
@@ -435,7 +445,7 @@ run Proc.new{|env|  [200, {"Content-Type" => "text/plain"}, ['Try accessing visi
 
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
-<h4>Using Lobster</h4>
+<h3>Using Lobster</h3>
 <p>Rack comes with little funny web application called "Lobster", that can be used as a demo.</p>
 <p>Let us create a <code>config.ru</code> file that contains the following:</p>
 <pre># config.ru
@@ -463,7 +473,7 @@ run Rack::Lobster.new
 <p>After you have finished executing this program, press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
 
-<h3>Rack::Builder</h3>
+<h2>Rack::Builder</h2>
 <p>Under the hood, <code>rackup</code> converts your <code>config.ru</code> script to an instance of <a href="http://rack.rubyforge.org/doc/classes/Rack/Builder.html">Rack::Builder</a>.</p>
 <p><code>Rack::Builder</code> is the thing that glues various Rack middlewares and applications together and converts them into a single entity/rack application. A good analogy is comparing <code>Rack::Builder</code> object with a stack, where at the very bottom is your actual rack application and all middlewares on top of it, and the whole stack itself is a rack application too.</p>
 
