@@ -338,7 +338,7 @@ run MyApp.new
 </pre>
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
-<h3>A Simple Rack Exercise with rackup</h3>
+<h3>Exercise: A Simple Rack app with rackup</h3>
 <p>Previously you have written a simple Rack application which when run, accepts a command-line argument. Display this command-line argument. An example:</p>
 <pre>$ ruby simple_rack.rb "Hello World"
 200
@@ -408,7 +408,7 @@ end
 <p><b>Credit:</b> <a href="https://github.com/rkh">Konstantin Haase</a></p>
 <p>Konstantin has provided us with <a href="https://gist.github.com/57c8449e305a55a80e21">another practical Rack app</a>, where we use <code>cURL</code> to upload a text file and which then gets sorted.</p>
 
-<h3>An Exercise using Rack::Request and Rack::Response</h3>
+<h3>Exercise: An app using Rack::Request and Rack::Response</h3>
 <p>Write a rack app that uses <code>Rack::Request</code> and <code>Rack::Response</code> to reverse a string passed to the app by a client. Post your code in the technical forum.</p>
 
 <h4>Rack middleware</h4>
@@ -457,7 +457,7 @@ run Proc.new{|env|  [200, {"Content-Type" => "text/plain"}, ['Try accessing visi
 <p>In your browser window, you should see something like this:</p>
 <pre>Try accessing visiting /hello
 </pre>
-<p>That's the normal repsonse from your app.</p>
+<p>That's the normal response from your app.</p>
 
 <p>Next, in your browser window type the url: <a href="http://localhost:9292/hello">http://localhost:9292/hello</a></p>
 <p>In your browser window, you should see something like this:</p>
