@@ -242,6 +242,68 @@ end
 <h2>Exercise: A simple text reversing service</h2>
 <p>Build a simple text reversing Sinatra app that accepts a text string from the user and displays to the user the text string reversed. Store your code in a GitHub repo and post your repo URL in the technical forum.</p>
 
+<h2>Deploy a Sinatra app to Heroku</h2>
+
+<p>In order for Heroku to know what to do with your Sinatra app, create a <code>config.ru</code> in the root-directory i.e. folder <code>sinatraapp</code>. The contents are:</p>
+<pre>require "myapp3"
+run Sinatra::Application
+</pre>
+<p>The key line is <code>require 'myapp3'</code> (we are going to use the program <code>myapp3.rb</code> written above). Be sure to change that to whatever your application's name is. This line helps to load rubygems, Sinatra, rack and everything that we need. Heroku sets <code>RACK_ENV</code> to production for you. Finally we tell rack to run our Sinatra application with the line <code>run Sinatra::Application</code>. This will run "myapp3" in our case.</p>
+
+<p>Next, we will install the required gems via bundler. Open a Bash shell for folder <code>sinatraapp</code> and type:</p>
+<pre>$ bundle init
+Writing new Gemfile to c:/sinatraapp/Gemfile
+</pre>
+
+<p>Edit the created Gemfile with your preferred text editor to let it look like this:</p>
+<pre>source "http://rubygems.org"
+gem 'sinatra'
+</pre>
+
+<p>Now we need to tell Bundler to check if we're missing the gems our application depends on, if so, tell it to install them. In your open Bash shell type:</p>
+<pre>$ bundle check
+The following gems are missing ...
+</pre>
+
+<p>Finally in the open Bash shell, type:</p>
+<pre>$ bundle install
+</pre>
+
+<p>This will ensure all gems specified on Gemfile, together with their dependencies, are available for your application. Running "bundle install" will also generate a "Gemfile.lock" file. The Gemfile.lock ensures that your deployed versions of gems on Heroku match the version installed locally on your development machine.</p>
+
+<p>Set up your local app to use Git. I have the <code>myapp3.rb</code> and <code>config.ru</code> files already in <code>sinatraapp</code>. Open a command window in folder <code>sinatraapp</code> and type the following:</p>
+
+<pre>$ git init
+$ git add .
+$ git commit -m "myapp3 first commit"
+</pre>
+
+<p><b>Note</b>: The location of the <code>config.ru</code> file is in the folder <code>sinatraapp</code>.</p>
+
+<p>Next we create the app on heroku. In the already open Bash shell, type:</p>
+<pre>$ heroku create
+Creating afternoon-winter-7405... done, stack is bamboo-mri-1.9.2
+http://afternoon-winter-7405.heroku.com/ | git@heroku.com:afternoon-winter-7405.
+git
+</pre>
+
+<p>The final line of output from the create command <em>will be different for each one of you</em> and is something like this:</p>
+<pre>http://afternoon-winter-7405.heroku.com/ | git@heroku.com:afternoon-winter-7405.git
+</pre>
+
+<p>The app has been created and two URLs are provided. One is for the web face of your new app i.e. <a href="http://afternoon-winter-7405.heroku.com/">http://afternoon-winter-7405.heroku.com/</a>. The other one is for the Git repository that you will push your code to. Normally you would need to add this as a git remote; the "heroku create" command has done this for you automatically.</p>
+
+<p>Let us now deploy our code:</p>
+<pre>$ git push heroku master
+</pre>
+
+<p><b>Note</b>: At this stage you can rename your app by:</p>
+<pre>$ heroku rename app_newname
+</pre>
+
+<p>Congrats, you have successfully deployed your first Sinatra app. For other deployment options, refer the URL - <a href="http://sinatra-book.gittr.com/#deployment">http://sinatra-book.gittr.com/#deployment</a>.</p>
+
+
 <h2>Introduction to Sinatra eBook (Updated 15th Sept. 2011)</h2>
 <p>We have had a very quick look at Sinatra. For a more detailed look, you could consider buying the <a href="http://rubylearning.com/blog/introduction-to-sinatra-ebook/">Introduction to Sinatra eBook</a>, an easy-to-follow guide to everything on Sinatra.</p>
 <p>It is priced at a reasonable <b>US$ 14.95</b>. The money collected helps me maintain the site and provide quality content to you all.</p>
