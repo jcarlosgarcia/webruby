@@ -245,7 +245,7 @@ end
 <h2>Deploy a Sinatra app to Heroku</h2>
 
 <p>In order for Heroku to know what to do with your Sinatra app, create a <code>config.ru</code> in the root-directory i.e. folder <code>sinatraapp</code>. The contents are:</p>
-<pre>require "myapp3"
+<pre>require './myapp3'
 run Sinatra::Application
 </pre>
 <p>The key line is <code>require 'myapp3'</code> (we are going to use the program <code>myapp3.rb</code> written above). Be sure to change that to whatever your application's name is. This line helps to load rubygems, Sinatra, rack and everything that we need. Heroku sets <code>RACK_ENV</code> to production for you. Finally we tell rack to run our Sinatra application with the line <code>run Sinatra::Application</code>. This will run "myapp3" in our case.</p>
@@ -302,6 +302,9 @@ git
 </pre>
 
 <p>Congrats, you have successfully deployed your first Sinatra app. For other deployment options, refer the URL - <a href="http://sinatra-book.gittr.com/#deployment">http://sinatra-book.gittr.com/#deployment</a>.</p>
+
+<h2>Exercise: Deploy the simple text reversing service app to Heroku</h2>
+<p>Deploy to Heroku the simple text reversing Sinatra app that you just built. Post the URL in the technical forum.</p>
 
 
 <h2>Introduction to Sinatra eBook (Updated 15th Sept. 2011)</h2>
