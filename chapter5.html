@@ -201,6 +201,13 @@ $
 
 <p>In the command window, press <b>Ctrl C</b> to stop the <b>WEBrick</b> server. Close the command window.</p>
 
+<p><b>Note</b>: This may cause the <b>WEBrick</b> server not to stop in some distributions, showing the following error in the console:</p>
+<pre>ERROR Interrupt: 
+	/usr/local/rvm/rubies/ruby-1.9.3-head/lib/ruby/1.9.1/webrick/server.rb:98:in `select'
+</pre>
+<p>In order to stop WEBrick, press <b>Ctrl z</b> to send the process to background and then kill it using <i>kill -9 %1</i> (run the <i>jobs</i> command to ensure that 1 is the right number of your job).</p>
+
+<p>You may want to use <b>Thin</b> handler instead of <b>WEBrick</b>.</p>
 
 <h3>my_rack_proc2.rb</h3>
 <p>What we saw above can be written in a Ruby program <b><code>my_rack_proc2.rb</code></b>:</p>
