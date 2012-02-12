@@ -306,6 +306,63 @@ git
 <h2>Exercise: Deploy the simple text reversing service app to Heroku</h2>
 <p>Deploy to Heroku the simple text reversing Sinatra app that you just built. Post the URL in the technical forum.</p>
 
+<h2>Sinatra and Rack Middleware</h2>
+<p>Sinatra rides on Rack, a minimal standard interface for Ruby web frameworks. As seen earlier, one of Rack's most interesting capabilities for application developers is support for "middleware" - components that sit between the server and your application monitoring and/or manipulating the HTTP request/response to provide various types of common functionality.</p>
+
+<p>Sinatra makes building Rack middleware easier by using the top-level <code>use</code> method. Let's use our middleware program namely <code>my_middleware.rb</code> which is in the folder <code>my_ruby_programs</code>. In this folder write a program, call it <code>my_sinatra.rb</code>, as follows:
+<pre>require 'sinatra'
+require './my_middleware'
+use MyMiddleware::Hello
+get '/' do
+  "Hello Ruby participants from across the globe!"
+end
+</pre>
+
+<p>Open a command window and type:</p>
+<pre>$ ruby my_sinatra.rb
+[2012-02-12 08:22:09] INFO  WEBrick 1.3.1
+[2012-02-12 08:22:09] INFO  ruby 1.9.3 (2011-10-30) [i386-mingw32]
+== Sinatra/1.3.1 has taken the stage on 4567 for development with backup from WEBrick
+[2012-02-12 08:22:09] INFO  WEBrick::HTTPServer#start: pid=4288 port=4567
+</pre>
+<p>Open a web browser and navigate to <a href="http://localhost:4567/">http://localhost:4567/hello</a>. Your Sinatra application should respond with our greeting namely:</p>
+<pre>Hello from the middleware!
+</pre>
+
+<p>In the open command window, press Ctrl C to stop Sinatra. Close the command window.</p>
+
+<h2>Sinatra and Rack HTTP Basic Authentication</h2>
+<p>You can easily protect your Sinatra application using HTTP Basic Authentication with the help of Rack middlewares. In the folder <code>my_ruby_programs</code> type the program <code>my_sinatra2.rb</code:</p>
+<pre>require 'sinatra'
+
+use Rack::Auth::Basic, "Restricted Area" do |user, password|
+  user == 'super' && password == 'secretsauce'
+end
+
+get '/' do
+  "This is a secret page"
+end
+
+get '/files' do
+   "Here are the secret files"
+end
+</pre>
+
+<p>Open a command window and type:</p>
+<pre>$ ruby my_sinatra2.rb
+[2012-02-12 08:22:09] INFO  WEBrick 1.3.1
+[2012-02-12 08:22:09] INFO  ruby 1.9.3 (2011-10-30) [i386-mingw32]
+== Sinatra/1.3.1 has taken the stage on 4567 for development with backup from WEBrick
+[2012-02-12 08:22:09] INFO  WEBrick::HTTPServer#start: pid=4288 port=4567
+</pre>
+<p>Open a web browser and navigate to <a href="http://localhost:4567">http://localhost:4567</a>. Your Sinatra application should respond by asking you for the User Name and Password. Enter "super" and "secretsauce" respectively and the browser page would display:</p>
+<pre>This is a secret page
+</pre>
+<p>If you type the url: <a href="http://localhost:9292/files">http://localhost:9292/files</a> in your browser window you should see something like this:</p>
+<pre>Here are the secret files
+</pre>
+<p>In the open command window, press Ctrl C to stop Sinatra. Close the command window.</p>
+
 
 <h2>Introduction to Sinatra eBook (Updated 15th Sept. 2011)</h2>
 <p>We have had a very quick look at Sinatra. For a more detailed look, you could consider buying the <a href="http://rubylearning.com/blog/introduction-to-sinatra-ebook/">Introduction to Sinatra eBook</a>, an easy-to-follow guide to everything on Sinatra.</p>
