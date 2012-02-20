@@ -505,22 +505,7 @@ jruby 1.6.5 (ruby-1.8.7-p330) (2011-10-25 9dcd388) (Java HotSpot(TM) Client VM 1
 <pre>gem install heroku
 </pre>
 
-<p>Next, create a new folder, say <code>rackheroku</code>. Assuming that you have Git installed, open a Bash shell in that folder. You now need to identify yourself to Git (you need to do this only once). With the bash shell still open type in the following:</p>
-<pre>git config --global user.name "Your name here"
-git config --global user.email "Your email id"
-</pre>
-
-<p>Git does not allow accented characters in user name. This will set the info stored when you commit to a Git repository. Git has now been set up.</p>
-
-<p>The first step in using Git is to create your SSH Key. This will be used to secure communications between your machine and other machines, and to identify your source code changes. (If you already have an SSH key for other reasons, you can use it here, there is nothing Git-specific about this.)</p>
-
-<p>To create our ssh key, open a new command window and type:</p>
-<pre>$ ssh-keygen -C "username@email.com" -t rsa
-</pre>
-<p>(with your own email address, of course).</p>
-
-<p>Accept the default key file location. When prompted for a passphrase, make one up and enter it. If you feel confident that your own machine is secure, you can use a blank passphrase, for more convenience and less security. Note where it told you it stored the file. On my Windows box, it was stored in "C:\Documents and Settings\A\.ssh\". Memorize your passphrase carefully. If you forget it, you will NOT be able to recover it.</p>
-<p>Open the public file id_rsa.pub with a text editor. The text in there is your "public SSH key".</p>
+<p>Next, create a new folder, say <code>rackheroku</code>. Assuming that you have Git installed, open a Bash shell in that folder.</p>
 
 <p>Upload your public key (do it only once):</p>
 <pre>$ heroku keys:add

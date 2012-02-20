@@ -329,7 +329,7 @@ $
 <pre># my_app.rb
 class MyApp
   def call(env)
-    [200, {"Content-Type" => "text/html"}, ["Hello Rack Participants"]]
+    [200, {"Content-Type" => "text/html"}, ["Hello Rack Participants from across the globe"]]
   end
 end
 </pre>
@@ -348,7 +348,7 @@ run MyApp.new
 <p>Open a browser window and type the url: <a href="http://localhost:9292/">http://localhost:9292/</a></p>
 
 <p>In your browser window, you should see something like this:</p>
-<pre>Hello Rack Participants
+<pre>Hello Rack Participants from across the globe
 </pre>
 <p>Press <b>Ctrl-C</b> in the command window to stop the <b>WEBrick</b> server. Close the command window.</p>
 
@@ -540,7 +540,7 @@ Rack::Handler::WEBrick.run rack_time, :Port => 9292
 builder = Rack::Builder.new do
   run rack_time
 end
-Rack::Handler::WEBrick.run rack_time, :Port => 9292
+Rack::Handler::WEBrick.run builder, :Port => 9292
 </pre>
 <p><code>Rack::Builder#run</code> specifies the actual rack application you're wrapping with <code>Rack::Builder</code>.</p>
 <p>Here <code>Rack::Builder#initialize</code> accepts a block argument, which is evaluated within the context of the newly created instance using <code>instance_eval</code>.</p>
@@ -568,7 +568,7 @@ builder = Rack::Builder.new do
   Logger.new('rack.log')
   run rack_time
 end
-Rack::Handler::WEBrick.run rack_time, :Port => 9292
+Rack::Handler::WEBrick.run builder, :Port => 9292
 </pre>
 <p>We create an explicit logger <code>rack.log</code>. This log file is created in the same folder as <code>config.ru</code> and contains:</p>
 <pre># Logfile created on 2011-12-06 13:54:42 +0530 by logger.rb/31641
